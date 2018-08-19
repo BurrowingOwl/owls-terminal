@@ -29,6 +29,7 @@
     "brace-style": ["warn", "stroustrup", { "allowSingleLine": true }],
     "camelcase": "off",
     "class-methods-use-this": "off",
+    "consistent-return": "off",
     "comma-dangle": [
       "warn", {
         "arrays": "always-multiline",
