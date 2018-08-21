@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@/common/Button';
+import { ApolloProvider } from 'react-apollo';
+import client from '@/apollo';
+import App from '@/App';
 
-const App = () => (
-  <div>
-    <Button>
-      Button!
-    </Button>
-  </div>
+const Root = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
 );
 
 ReactDOM.render(
-  <App />,
+  <Root />,
   document.getElementById('root'),
 );

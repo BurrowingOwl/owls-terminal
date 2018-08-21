@@ -8,6 +8,18 @@ module.exports = base({
   devtool: 'cheap-module-eval-source-map', // https://webpack.js.org/configuration/devtool/#devtool 참고
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+
+    host: 'localhost', // Defaults to `localhost`
+    port: 8080, // Defaults to 8080
+    proxy: {
+      '^/graphql/*': {
+        target: 'http://localhost:4000/graphql/',
+        secure: false,
+      },
+    },
   },
   babelOption: {
     // This is a feature of `babel-loader` for webpack (not Babel itself).
