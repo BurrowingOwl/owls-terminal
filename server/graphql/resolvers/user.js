@@ -1,17 +1,17 @@
-const User = require('../../model/user');
+const userQuery = require('../../query/user');
 
 // _ 는 parent에서 return된 값. 여기서 필요없음.
 // find관련 query는 promise가 아님!
 function getUser(_, { _id }) {
-  return User.findById(_id);
+  return userQuery.getUserById(_id);
 }
 
 function getUsers() {
-  return User.find({});
+  return userQuery.getUsersByQuery({});
 }
 
 async function login(_, { username, password }) {
-  const user = await User.findOne({ username });
+  const user = await userQuery.getUserByName(username);
   if (user && user.password === password) {
     return 'token'; // 임시 토큰.
   }
@@ -26,8 +26,7 @@ function signup(_, { username, password, name, isAuthorized = false, isAdmin = f
     isAuthorized,
     isAdmin,
   };
-  const newUser = new User(user);
-  return newUser.save();
+  return userQuery.createUser(user);
 }
 module.exports = {
   getUser,

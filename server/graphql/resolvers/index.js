@@ -2,6 +2,10 @@ const userResolver = require('./user');
 const postResolver = require('./post');
 const tabResolver = require('./tab');
 
+const userQuery = require('../../query/user');
+const postQuery = require('../../query/post');
+const tabQuery = require('../../query/tab');
+
 const resolvers = {
   Query: {
     user: userResolver.getUser,
@@ -15,11 +19,11 @@ const resolvers = {
   // Post 타입은 typeDefs에 정해져 있고, 그에 따라 title, contents를 바로 가져올 수 있음
   // 밑에 Post에서도 마찬가지.
   User: {
-    posts: (root) => postResolver.getPosts(null, { authorId: root._id }),
+    posts: (root) => postQuery.getPostsByQuery({ authorId: root._id }),
   },
   Post: {
-    author: (root) => userResolver.getUser(null, { _id: root.authorId }),
-    tab: (root) => tabResolver.getTab(null, { _id: root.tabId }),
+    author: (root) => userQuery.getUserById(root.authorId),
+    tab: (root) => tabQuery.getTabById(root.tabId),
   },
   Mutation: {
     login: userResolver.login,

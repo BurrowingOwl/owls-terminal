@@ -1,19 +1,19 @@
-const Tab = require('../../model/tab');
+const tabQuery = require('../../query/tab');
 
 function getTab(_, { _id }) {
-  return Tab.findById(_id);
+  return tabQuery.getTabById(_id);
 }
 
 function getTabs(_, { name }) {
+  let query = {};
   if (name) {
-    return Tab.find({ name });
+    query = { name };
   }
-  return Tab.find({});
+  return tabQuery.getTabsByQuery(query);
 }
 
 function createTab(_, { name }) {
-  const newTab = new Tab({ name });
-  return newTab.save();
+  return tabQuery.createTab({ name });
 }
 
 module.exports = {

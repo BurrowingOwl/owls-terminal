@@ -1,22 +1,22 @@
-const Post = require('../../model/post');
+const postQuery = require('../../query/post');
 
 function getPost(_, { _id }) {
-  return Post.findById(_id);
+  return postQuery.getPostById(_id);
 }
 
 function getPosts(_, { tabId, authorId }) {
-  if (tabId) {
-    return Post.find({ tabId });
-  }
+  let query = {};
   if (authorId) {
-    return Post.find({ authorId });
+    query = { ...query, authorId };
   }
-  return Post.find({});
+  if (tabId) {
+    query = { ...query, tabId };
+  }
+  return postQuery.getPostsByQuery(query);
 }
 
 function createPost(_, post) {
-  const newPost = new Post(post);
-  return newPost.save();
+  return postQuery.savePost(post);
 }
 
 module.exports = {
