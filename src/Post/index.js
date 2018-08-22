@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
@@ -22,32 +21,38 @@ const GET_POSTS_BY_TAGS = gql`
     }
   }
 `;
+const GET_SELECTED_TAB = gql`
+  query {
+    selectedTabId @client 
+  }
+`;
+const Post = () => (
+  <Query query={GET_SELECTED_TAB}>
+    {
+      ({ data: { selectedTabId } }) => (
+        <Query skip={!selectedTabId} query={GET_POSTS_BY_TAGS} variables={{ tabId: selectedTabId }}>
+          {({ loading, error, data }) => {
+            if (loading) return <Loading />;
+            if (error) return `Error! ${error.message}`;
 
-const Post = ({ selectedTabId }) => (
-  <Query skip={!selectedTabId} query={GET_POSTS_BY_TAGS} variables={{ tabId: selectedTabId }}>
-    {({ loading, error, data }) => {
-      if (loading) return <Loading />;
-      if (error) return `Error! ${error.message}`;
-
-      return (
-        <Container>
-          {
-            data.posts.map(post => (
-              <PostItem
-                {...post}
-                key={post._id}
-                authorName={post.author.name}
-              />
-            ))
-          }
-        </Container>
-      );
-    }}
+            return (
+              <Container>
+                {
+                  data.posts.map(post => (
+                    <PostItem
+                      {...post}
+                      key={post._id}
+                      authorName={post.author.name}
+                    />
+                  ))
+                }
+              </Container>
+            );
+          }}
+        </Query>
+      )
+    }
   </Query>
 );
-
-Post.propTypes = {
-  selectedTabId: PropTypes.string.isRequired,
-};
 
 export default Post;
