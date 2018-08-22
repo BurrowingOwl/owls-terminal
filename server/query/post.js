@@ -3,7 +3,9 @@ const Post = require('../model/post');
 function getPostById(id) {
   return Post.findById(id);
 }
-
+function getPostsByAuthor(id) {
+  return Post.find({ authorId: id });
+}
 function getPostsByQuery(query = {}) {
   return Post.find(query);
 }
@@ -15,6 +17,7 @@ function savePost(post = {}) {
 
 module.exports = {
   getPostById,
+  getPostsByAuthor,
   getPostsByQuery,
   savePost,
 };

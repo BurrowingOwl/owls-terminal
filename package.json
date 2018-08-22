@@ -13,6 +13,7 @@
     "apollo-boost": "^0.1.14",
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
+    "dataloader": "^1.4.0",
     "eslint": "^5.4.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-import": "^2.14.0",
