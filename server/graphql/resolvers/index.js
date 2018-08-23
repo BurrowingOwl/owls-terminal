@@ -14,14 +14,18 @@ const tabQuery = require('../../query/tab');
 // root의 context에 넣는 것도 방법.
 const TabsLoader = new DataLoader(tabQuery.getTabsByIds);
 const UsersLoader = new DataLoader(userQuery.getUsersByIds);
+const PostsLoader = new DataLoader(postQuery.getPostsByIds);
 
+// 단순 Query에서도 dataloader가 필요한지는 생각해 봐야함.
+// Query에 있는 user,post,tab을 여러번 부를일이 있나?
+// 써서 나쁠건 없을듯.
 const resolvers = {
   Query: {
-    user: userResolver.getUser,
+    user: (_, { _id }) => UsersLoader.load(_id),
     users: userResolver.getUsers,
-    post: postResolver.getPost,
+    post: (_, { _id }) => PostsLoader.load(_id),
     posts: postResolver.getPosts,
-    tab: tabResolver.getTab,
+    tab: (_, { _id }) => TabsLoader.load(_id),
     tabs: tabResolver.getTabs,
   },
   // User를 가져올 때 posts 필드에 Post 타입의 데이터를 가져올 수 있도록 함.

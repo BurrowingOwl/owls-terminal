@@ -2,6 +2,8 @@ const userQuery = require('../../query/user');
 
 // _ 는 parent에서 return된 값. 여기서 필요없음.
 // find관련 query는 promise가 아님!
+// mongoose 문서 참고.
+
 function getUser(_, { _id }) {
   return userQuery.getUserById(_id);
 }
