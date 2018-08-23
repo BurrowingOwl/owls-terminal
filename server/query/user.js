@@ -10,8 +10,11 @@ async function getUsersByIds(ids) {
   const mappedUsers = mapKeysToValues(ids, users, '_id');
   return mappedUsers;
 }
+function getUserByUsername(username) {
+  return User.findOne({ username });
+}
 function getUserByName(name) {
-  return User.findOne(name);
+  return User.findOne({ name });
 }
 function getUsersByQuery(query = {}) {
   return User.find(query);
@@ -23,6 +26,7 @@ function createUser(user) {
 module.exports = {
   getUserById,
   getUsersByIds,
+  getUserByUsername,
   getUserByName,
   getUsersByQuery,
   createUser,

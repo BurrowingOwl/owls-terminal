@@ -1,4 +1,5 @@
 const userQuery = require('../../query/user');
+const authUtil = require('../../util/auth');
 
 // _ 는 parent에서 return된 값. 여기서 필요없음.
 // find관련 query는 promise가 아님!
@@ -13,9 +14,18 @@ function getUsers() {
 }
 
 async function login(_, { username, password }) {
-  const user = await userQuery.getUserByName(username);
+  const user = await userQuery.getUserByUsername(username);
   if (user && user.password === password) {
-    return 'token'; // 임시 토큰.
+    const matchUser = {
+      _id: user._id,
+      username: user.username,
+      name: user.name,
+    };
+    const token = authUtil.createJWToken({ payload: matchUser });
+    return {
+      user: matchUser,
+      token, // 임시 토큰.
+    };
   }
   throw new Error('올바른 아이디 또는 패스워드가 아닙니다.');
 }

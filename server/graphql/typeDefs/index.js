@@ -38,8 +38,12 @@ type Tab {
   _id: String
   name: String
 }
+type LoginData {
+  user: User
+  token: String
+}
 type Mutation {
-  login(username: String!, password: String!): String
+  login(username: String!, password: String!): LoginData
   signup(username: String!, password: String!, name: String!, isAuthorized: Boolean, isAdmin: Boolean): User
   createPost(title: String!, contents: String!, authorId: String!, status: String, tabId: String): Post
   createTab(name: String!): Tab
