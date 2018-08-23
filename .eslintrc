@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -17,7 +17,8 @@
     "APP__VERSION": false
   },
   "plugins": [
-    "babel"
+    "babel",
+    "import"
   ],
   "rules": {
     "arrow-body-style": [
