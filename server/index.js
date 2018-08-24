@@ -24,6 +24,7 @@ app.use('/graphql', middlewares.verify, graphqlHTTP(req => ({
   graphiql: process.env.NODE_ENV !== 'production',
   context: {
     user: req.user, // middlewares.verify로 부터 반환된 값.
+    token: req.token,
   },
 })));
 

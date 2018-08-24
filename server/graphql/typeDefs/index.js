@@ -47,6 +47,7 @@ type Mutation {
   signup(username: String!, password: String!, name: String!, isAuthorized: Boolean, isAdmin: Boolean): User
   createPost(title: String!, contents: String!, authorId: String!, status: String, tabId: String): Post
   createTab(name: String!): Tab
+  verify: LoginData
 }
 `;
 

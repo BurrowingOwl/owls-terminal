@@ -7,10 +7,15 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack --config ./config/webpack.config.dev.js",
-    "start:dev": "webpack-dev-server --config ./config/webpack.config.dev.js & NODE_ENV=development nodemon server"
+    "start:dev": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.dev.js & NODE_ENV=development nodemon server"
   },
   "dependencies": {
-    "apollo-boost": "^0.1.14",
+    "apollo-cache-inmemory": "^1.2.8",
+    "apollo-client": "^2.4.0",
+    "apollo-link": "^1.2.2",
+    "apollo-link-context": "^1.0.8",
+    "apollo-link-http": "^1.5.4",
+    "apollo-link-state": "^0.4.1",
     "chalk": "^2.4.1",
     "cors": "^2.8.4",
     "dataloader": "^1.4.0",

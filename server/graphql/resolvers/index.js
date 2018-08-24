@@ -41,6 +41,7 @@ const resolvers = {
   Mutation: {
     login: userResolver.login,
     signup: userResolver.signup,
+    verify: userResolver.verify,
     createPost: postResolver.createPost,
     createTab: tabResolver.createTab,
   },

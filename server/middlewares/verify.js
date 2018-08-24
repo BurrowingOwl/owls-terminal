@@ -5,15 +5,15 @@ const config = require('../config');
 function verify(req, res, next) {
   const authFail = () => {
     req.user = null;
+    req.token = null;
     next();
   };
   if (!req.headers.authorization || req.headers.authorization.split(' ')[0] !== 'Bearer') {
     return authFail();
   }
   const token = req.headers.authorization.split(' ')[1];
-
   if (!token) {
-    authFail();
+    return authFail();
   }
   auth.verifyJWToken(token, config.jwtSecret)
     .then(decoded => {
@@ -23,13 +23,11 @@ function verify(req, res, next) {
             req.user = null;
           }
           req.user = user;
+          req.token = token;
           next();
         });
     })
-    .catch(() => {
-      req.user = null;
-      next();
-    });
+    .catch(authFail);
 }
 
 module.exports = verify;

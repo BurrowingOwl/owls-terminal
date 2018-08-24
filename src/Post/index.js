@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 0 1rem;
 `;
 const GET_POSTS_BY_TAGS = gql`
-  query posts($tabId: String) {
+  query getPosts($tabId: String!) {
     posts(tabId: $tabId) {
       _id
       title
@@ -25,7 +25,7 @@ const GET_POSTS_BY_TAGS = gql`
   }
 `;
 const GET_SELECTED_TAB = gql`
-  query {
+  query getSelectedTab {
     selectedTabId @client 
   }
 `;
@@ -34,14 +34,14 @@ const Post = () => (
     {
       ({ data: { selectedTabId } }) => (
         <Query skip={!selectedTabId} query={GET_POSTS_BY_TAGS} variables={{ tabId: selectedTabId }}>
-          {({ loading, error, data }) => {
+          {({ loading, error, data: { posts } }) => {
             if (loading) return <Loading />;
             if (error) return `Error! ${error.message}`;
-
+            if (!posts) return null;
             return (
               <Container>
                 {
-                  data.posts.map(post => (
+                  posts.map(post => (
                     <PostItem
                       {...post}
                       key={post._id}

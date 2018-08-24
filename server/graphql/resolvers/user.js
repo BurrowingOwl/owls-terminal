@@ -41,9 +41,25 @@ function signup(_, { username, password, name, isAuthorized = false, isAdmin = f
   };
   return userQuery.createUser(user);
 }
+function verify(_, args, ctx) {
+  const { user, token } = ctx;
+  if (!user) {
+    return {};
+  }
+  const { _id, username, name } = user;
+  return {
+    user: {
+      _id,
+      username,
+      name,
+    },
+    token,
+  };
+}
 module.exports = {
   getUser,
   getUsers,
   login,
   signup,
+  verify,
 };

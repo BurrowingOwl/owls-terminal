@@ -6,7 +6,7 @@ import TabList from './TabList';
 import TabItem from './TabItem';
 
 const GET_TABS = gql`
-  {
+  query getTabs {
     tabs {
       _id
       name
@@ -14,7 +14,7 @@ const GET_TABS = gql`
   }
 `;
 const GET_SELECTED_TAB = gql`
-  query {
+  query getSelectedTab {
     selectedTabId @client
   }
 `;

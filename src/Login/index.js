@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { ApolloConsumer, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import { Field, Button } from '@/common';
 import gql from 'graphql-tag';
 
@@ -33,6 +33,11 @@ const LOGIN = gql`
     }
   }
 `;
+const UPDATE_LOGIN_DATA = gql`
+  mutation updateLoginData($_id: String!, $username: String!, $name: String!, $isLoggedIn: Boolean!, $token: String!) {
+    updateLoginData(_id: $_id, username: $username, name: $name, isLoggedIn: $isLoggedIn, token: $token) @client
+  }
+`;
 class Login extends Component {
   state = {
     username: '',
@@ -52,9 +57,9 @@ class Login extends Component {
     const { username, password } = this.state;
     return (
       <Container>
-        <ApolloConsumer>
+        <Mutation mutation={UPDATE_LOGIN_DATA}>
           {
-            client => (
+            updateLoginData => (
               <Mutation
                 mutation={LOGIN} onCompleted={({ login }) => {
                   const loginState = {
@@ -63,7 +68,7 @@ class Login extends Component {
                     isLoggedIn: true,
                     __typename: 'LoginState',
                   };
-                  client.writeData({ data: { login: { ...loginState } } });
+                  updateLoginData({ variables: { ...loginState } });
                 }}
               >
                 {
@@ -78,7 +83,7 @@ class Login extends Component {
               </Mutation>
             )
           }
-        </ApolloConsumer>
+        </Mutation>
       </Container>
     );
   }
