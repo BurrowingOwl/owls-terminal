@@ -1,20 +1,35 @@
 const auth = require('../util/auth');
+const { getUserById } = require('../query/user');
 const config = require('../config');
 
 function verify(req, res, next) {
-  if (req.headers && req.headers.Authorization) {
-    auth.verifyToken(req.headers.Authorization, config.jwtSecret)
-      .then(decoded => {
-        req.decoded = decoded;
-        next();
-      })
-      .catch(() => {
-        req.decoded = null;
-        next();
-      });
+  const authFail = () => {
+    req.user = null;
+    next();
+  };
+  if (!req.headers.authorization || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+    return authFail();
   }
-  req.decoded = 'bb';
-  next();
+  const token = req.headers.authorization.split(' ')[1];
+
+  if (!token) {
+    authFail();
+  }
+  auth.verifyJWToken(token, config.jwtSecret)
+    .then(decoded => {
+      getUserById(decoded._id)
+        .then((user) => {
+          if (!user) {
+            req.user = null;
+          }
+          req.user = user;
+          next();
+        });
+    })
+    .catch(() => {
+      req.user = null;
+      next();
+    });
 }
 
 module.exports = verify;

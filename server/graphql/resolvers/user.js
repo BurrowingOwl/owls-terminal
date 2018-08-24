@@ -13,7 +13,7 @@ function getUsers() {
   return userQuery.getUsersByQuery({});
 }
 
-async function login(_, { username, password }) {
+async function login(_, { username, password }, ctx) {
   const user = await userQuery.getUserByUsername(username);
   if (user && user.password === password) {
     const matchUser = {
@@ -21,7 +21,8 @@ async function login(_, { username, password }) {
       username: user.username,
       name: user.name,
     };
-    const token = authUtil.createJWToken({ payload: matchUser });
+    const token = authUtil.createJWToken({ data: matchUser });
+    ctx.user = matchUser;
     return {
       user: matchUser,
       token, // 임시 토큰.

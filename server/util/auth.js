@@ -12,7 +12,7 @@ function createJWToken({ data = {}, maxAge = 3600 }) {
   );
   return token;
 }
-function verfiyJWToken(token) {
+function verifyJWToken(token) {
   return new Promise((resolve, reject) => {
     jwt.verify(token, config.jwtSecret, (err, decoded) => {
       if (err || !decoded) {
@@ -25,5 +25,5 @@ function verfiyJWToken(token) {
 
 module.exports = {
   createJWToken,
-  verfiyJWToken,
+  verifyJWToken,
 };

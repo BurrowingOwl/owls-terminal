@@ -23,7 +23,7 @@ app.use('/graphql', middlewares.verify, graphqlHTTP(req => ({
   schema,
   graphiql: process.env.NODE_ENV !== 'production',
   context: {
-    decoded: req.decoded,
+    user: req.user, // middlewares.verify로 부터 반환된 값.
   },
 })));
 
