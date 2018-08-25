@@ -32,9 +32,12 @@ const GET_LOGIN_STATE = gql`
     }
   }
 `;
-const logout = () => {
+const logout = async (client) => {
   // resetStore 에러...
   localStorage.removeItem('token');
+  client.writeData({ data: { login: { _id: '', __typename: 'LoginState', isLoggedIn: false } } });
+  // 먼저 isLoggedIn을 false로 해줘야 App 컴포넌트의 하위 active query들이 refetch가 안되는듯
+  client.resetStore();
 };
 const Header = () => (
   <Query query={GET_LOGIN_STATE}>

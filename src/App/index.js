@@ -54,27 +54,22 @@ const UPDATE_LOGIN_DATA = gql`
 class App extends React.Component {
   static propTypes = {
     updateLoginData: PropTypes.func.isRequired,
-    verify: PropTypes.func.isRequired,
+    verifyUser: PropTypes.func.isRequired,
   }
   componentDidMount() {
-    this.props.verify().then(({ data: { verify } }) => {
-      if (!verify) {
-        return;
-      }
-      const { user, token } = verify;
-      if (!token) {
-        return;
-      }
-      const { _id, username, name } = user;
-      this.props.updateLoginData({ _id, username, name, isLoggedIn: true, token });
-    });
-  }
-  updateLoginData = (user, token, updateQuery) => {
-    if (!user) {
-      return;
-    }
-    const { _id, username, name } = user;
-    updateQuery({ variables: { _id, username, name, isLoggedIn: true, token } });
+    const { verifyUser, updateLoginData } = this.props;
+    verifyUser()
+      .then(({ data: { verify } }) => {
+        if (!verify) {
+          return;
+        }
+        const { user, token } = verify;
+        if (!token) {
+          return;
+        }
+        const { _id, username, name } = user;
+        updateLoginData({ _id, username, name, isLoggedIn: true, token });
+      });
   }
   render() {
     return (
@@ -109,7 +104,7 @@ class App extends React.Component {
 export default compose(
   graphql(VERIFY_USER, {
     props: ({ mutate }) => ({
-      verify: () => mutate({}),
+      verifyUser: () => mutate({}),
     }),
   }),
   graphql(UPDATE_LOGIN_DATA, {

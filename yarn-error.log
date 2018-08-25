@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /mnt/c/Program Files (x86)/Yarn/bin/yarn.js upgrade
+  /usr/local/bin/node /mnt/c/Program Files (x86)/Yarn/bin/yarn.js add --dev regenerator-runtime
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/ProgramData/Oracle/Java/javapath_target_2292208562:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/GtkSharp/2.12/bin:/mnt/c/MinGW/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Python27:/mnt/c/Program Files (x86)/Yarn/bin:/mnt/c/Program Files/nodejs:/mnt/c/Program Files (x86)/Skype/Phone:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Local/atom/bin:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Roaming/npm:/mnt/c/Users/LTH_DT/AppData/Local/hyper/app-2.1.0-canary2/resources/bin:/mnt/c/Users/LTH_DT/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
@@ -31,7 +31,6 @@ npm manifest:
       "apollo-link": "^1.2.2",
       "apollo-link-context": "^1.0.8",
       "apollo-link-http": "^1.5.4",
-      "apollo-link-logger": "^1.2.3",
       "apollo-link-state": "^0.4.1",
       "chalk": "^2.4.1",
       "cors": "^2.8.4",
@@ -502,10 +501,6 @@ Lockfile:
     dependencies:
       apollo-link "^1.2.2"
       apollo-link-http-common "^0.2.4"
-  
-  apollo-link-logger@^1.2.3:
-    version "1.2.3"
-    resolved "https://registry.yarnpkg.com/apollo-link-logger/-/apollo-link-logger-1.2.3.tgz#1f3e6f7849ce7a7e3aa822141fe062cfa278b1e1"
   
   apollo-link-state@^0.4.1:
     version "0.4.1"
@@ -7829,4 +7824,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
 
 Trace: 
-  Error: ENOENT: no such file or directory, open '/home/LTH/.cache/yarn/v1/npm-@babel/code-frame-7.0.0-beta.51-bd71d9b192af978df915829d39d4094456439a0c/package.json'
+  Error: ENOENT: no such file or directory, lstat '/mnt/c/Burrowing_owls/owls-terminal/node_modules'

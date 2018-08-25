@@ -13,7 +13,10 @@ module.exports = (option) => ({
       '@': path.resolve(process.cwd(), 'src'),
     },
   },
-  entry: option.entry,
+  entry: [
+    'regenerator-runtime/runtime',
+    ...option.entry,
+  ],
   devtool: option.devtool,
   output: {
     path: path.resolve(process.cwd(), 'dist'),
