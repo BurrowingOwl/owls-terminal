@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Header from '@/Header';
-import Sidebar from '@/Sidebar';
-import Post from '@/Post';
-import Login from '@/Login';
+import { Route } from 'react-router-dom';
+import Landing from '@/Landing';
+import Main from '@/Main';
 import { graphql, compose, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -12,18 +11,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-const Section = styled.div`
-  width: 100%;
-  
-  display: flex;
-`;
-const Side = styled.div`
-  flex: 0 1 200px;
-`;
-const Main = styled.div`
-  flex: 1 0;
-`;
-
 const VERIFY_USER = gql`
   mutation verify {
     verify {
@@ -71,28 +58,17 @@ class App extends React.Component {
         updateLoginData({ _id, username, name, isLoggedIn: true, token });
       });
   }
+
   render() {
     return (
       <Container>
         <Query query={GET_LOGIN_STATE}>
           {
-            ({ data }) => {
-              if (!data.login.isLoggedIn) {
-                return <Login />;
+            ({ data: { login } }) => {
+              if (!login.isLoggedIn) {
+                return <Landing />;
               }
-              return (
-                <React.Fragment>
-                  <Header />
-                  <Section>
-                    <Side>
-                      <Sidebar />
-                    </Side>
-                    <Main>
-                      <Post />
-                    </Main>
-                  </Section>
-                </React.Fragment>
-              );
+              return <Route path="/" component={Main} />;
             }
           }
         </Query>

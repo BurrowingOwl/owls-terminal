@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 const Container = styled.div`
   width: 100%;
@@ -9,10 +11,16 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Loading = () => (
+const Loading = ({ label }) => (
   <Container>
-    ...Loading...
+    <Spinner size={SpinnerSize.large} label={label} />
   </Container>
 );
+Loading.propTypes = {
+  label: PropTypes.string,
+};
+Loading.defaultProps = {
+  label: '',
+};
 
 export default Loading;

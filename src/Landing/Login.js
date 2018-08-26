@@ -1,25 +1,9 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
-import { Field, Button } from '@/common';
 import gql from 'graphql-tag';
+import { Form, Field, Button, Container } from '@/common';
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Form = styled.form`
-  min-width: 300px;
-  min-height: 500px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
@@ -43,6 +27,9 @@ class Login extends Component {
     username: '',
     password: '',
   }
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  }
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -53,8 +40,14 @@ class Login extends Component {
     const { username, password } = this.state;
     login({ variables: { username, password } });
   }
+  handleKeyPress = login => e => {
+    if (e.key === 'Enter') {
+      this.handleLogin(login);
+    }
+  }
   render() {
     const { username, password } = this.state;
+    const { push } = this.props.history;
     return (
       <Container>
         <Mutation mutation={UPDATE_LOGIN_DATA}>
@@ -69,14 +62,21 @@ class Login extends Component {
                     __typename: 'LoginState',
                   };
                   updateLoginData({ variables: { ...loginState } });
+                  push('/');
                 }}
               >
                 {
                   login => (
-                    <Form>
-                      <Field name="username" value={username} onChange={this.handleChange} />
-                      <Field name="password" type="password" value={password} onChange={this.handleChange} />
-                      <Button type="button" onClick={() => this.handleLogin(login)}>Login</Button>
+                    <Form onEnter={() => this.handleLogin(login)}>
+                      <Field label="Username" name="username" value={username} onChange={this.handleChange} />
+                      <Field
+                        label="Password"
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={this.handleChange}
+                      />
+                      <Button primary={true} onClick={() => this.handleLogin(login)}>Login</Button>
                     </Form>
                   )
                 }

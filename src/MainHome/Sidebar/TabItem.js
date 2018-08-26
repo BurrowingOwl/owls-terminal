@@ -5,12 +5,12 @@ import styled from 'styled-components';
 const Item = styled.li`
   padding: 10px;
   font-size: 16px;
+  background-color: ${props => (props.selected ? '#65b4eb' : 'transparent')};
+  cursor: pointer;
 
-  border-bottom: 1px solid black;
-
-  span {
-    color: ${props => (props.selected ? 'red' : 'black')};
-    cursor: pointer;
+  &:hover {
+    background-color: #65b4eb;
+    transition: all 0.3s;
   }
 `;
 
