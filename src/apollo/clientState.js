@@ -17,7 +17,7 @@ const clientState = {
         cache.writeData({ data: { selectedTabId: tabId } });
         return null;
       },
-      updateLoginData: (_, { _id, username, name, isLoggedIn, token }, { cache }) => {
+      updateLoginData: (_, { _id = '', username = '', name = '', isLoggedIn = false, token }, { cache }) => {
         const userData = { _id, username, name, isLoggedIn, token };
         localStorage.setItem('token', token);
         cache.writeData({ data: { login: { ...userData, __typename: 'LoginState' } } });

@@ -19,7 +19,7 @@ const Container = styled.div`
   box-sizing: content-box;
   visibility: visible;
 
-  background-color: #118ad5;
+  background-color: ${props => props.theme.primary};
   color: white;
 `;
 

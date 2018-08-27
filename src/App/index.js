@@ -39,6 +39,9 @@ const UPDATE_LOGIN_DATA = gql`
   }
 `;
 class App extends React.Component {
+  state = {
+    isVerified: false,
+  }
   static propTypes = {
     updateLoginData: PropTypes.func.isRequired,
     verifyUser: PropTypes.func.isRequired,
@@ -47,6 +50,9 @@ class App extends React.Component {
     const { verifyUser, updateLoginData } = this.props;
     verifyUser()
       .then(({ data: { verify } }) => {
+        this.setState({
+          isVerified: true,
+        });
         if (!verify) {
           return;
         }
@@ -60,11 +66,15 @@ class App extends React.Component {
   }
 
   render() {
+    const { isVerified } = this.state;
     return (
       <Container>
         <Query query={GET_LOGIN_STATE}>
           {
             ({ data: { login } }) => {
+              if (!isVerified) {
+                return null;
+              }
               if (!login.isLoggedIn) {
                 return <Landing />;
               }

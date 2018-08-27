@@ -6,19 +6,16 @@ import { Loading } from '@/common';
 import PostItem from './PostItem';
 
 const Container = styled.div`
-  margin: 0 1rem;
+  width: 95%;
+  margin: 0 auto;
 `;
 const GET_POSTS_BY_TAGS = gql`
   query getPosts($tabId: String!) {
     posts(tabId: $tabId) {
       _id
       title
-      contents
       created
       author {
-        name
-      }
-      tab {
         name
       }
     }

@@ -7,7 +7,7 @@ module.exports = base({
   mode: 'development',
   devtool: 'cheap-module-eval-source-map', // https://webpack.js.org/configuration/devtool/#devtool 참고
   devServer: {
-    contentBase: './dist',
+    contentBase: path.resolve(process.cwd(), 'dist'),
     historyApiFallback: true,
     hot: true,
     inline: true,
