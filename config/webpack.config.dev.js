@@ -29,7 +29,7 @@ module.exports = base({
     plugins: ['react-hot-loader/babel'],
   },
   entry: [
-    'webpack-hot-middleware/client?reload=true',
+    // 'webpack-hot-middleware/client?reload=true', // 이거는 webpack-dev-middleware 용.
     path.resolve(process.cwd(), 'src/index.js'),
   ],
   output: {
@@ -39,7 +39,6 @@ module.exports = base({
     minimize: false,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // webpack-hot-loader를 위한 plugin
     new HtmlWebpackPlugin({ // Create HTML file that includes references to bundled CSS and JS.
       template: 'src/index.html',
       minify: {
@@ -48,5 +47,6 @@ module.exports = base({
       },
       inject: true, // custom
     }),
+    new webpack.HotModuleReplacementPlugin(), // webpack-hot-loader를 위한 plugin
   ],
 });
