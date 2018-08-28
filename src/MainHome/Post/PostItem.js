@@ -36,8 +36,8 @@ const Title = styled.div`
 const Footer = styled.div`
   font-size: 12px;
 `;
-const PostItem = ({ _id, title, authorName, created }) => (
-  <Container to={`/post/${_id}`}>
+const PostItem = ({ _id, tabId, title, authorName, created }) => (
+  <Container to={`/${tabId}/${_id}`}>
     <IconWrapper>
       <IoMdBook size="1.2em" />
     </IconWrapper>
@@ -55,6 +55,7 @@ PostItem.propTypes = {
   _id: PropTypes.string.isRequired,
   authorName: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
+  tabId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

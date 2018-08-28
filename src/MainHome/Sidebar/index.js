@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import gql from 'graphql-tag';
-import { Query, Mutation } from 'react-apollo';
+import { Query } from 'react-apollo';
 import { Loading } from '@/common';
 import TabList from './TabList';
 import TabItem from './TabItem';
@@ -29,6 +31,7 @@ const Header = styled.div`
 
   margin: 1rem;
 `;
+
 const GET_TABS = gql`
   query getTabs {
     tabs {
@@ -37,49 +40,41 @@ const GET_TABS = gql`
     }
   }
 `;
-const GET_SELECTED_TAB = gql`
-  query getSelectedTab {
-    selectedTabId @client
+class Sidebar extends Component {
+  render() {
+    const { match } = this.props;
+    const { tabId } = match.params;
+    return (
+      <Container>
+        <Query query={GET_TABS}>
+          {({ loading, error, data }) => {
+            if (loading) return <Loading />;
+            if (error) return <div>{`Error! ${error.message}`}</div>;
+            return (
+              <TabList>
+                <Header>Categories</Header>
+                {
+                  data.tabs.map(tab => (
+                    <TabItem
+                      key={tab._id}
+                      name={tab.name}
+                      selected={tab._id === tabId}
+                      {...tab}
+                    />
+                  ))
+                }
+              </TabList>
+            );
+          }}
+        </Query>
+      </Container>
+    );
   }
-`;
-const SELECT_TAB = gql`
-  mutation selectTabId($tabId: String!) {
-    selectTabId(tabId: $tabId) @client
-  }
-`;
-const Sidebar = () => (
-  <Container>
-    <Mutation mutation={SELECT_TAB}>
-      {
-        selectTabId => (
-          <Query query={GET_TABS} onCompleted={data => (data.tabs[0] ? selectTabId({ variables: { tabId: data.tabs[0]._id } }) : null)}>
-            {({ loading, error, data }) => {
-              if (loading) return <Loading />;
-              if (error) return <div>{`Error! ${error.message}`}</div>;
-              return (
-                <TabList>
-                  <Header>Categories</Header>
-                  {
-                    data.tabs.map(tab => (
-                      <Query key={tab._id} query={GET_SELECTED_TAB}>
-                        {({ data: { selectedTabId } }) => (
-                          <TabItem
-                            key={tab._id}
-                            name={tab.name}
-                            selected={tab._id === selectedTabId}
-                            onClick={() => selectTabId({ variables: { tabId: tab._id } })}
-                          />
-                        )}
-                      </Query>
-                    ))
-                  }
-                </TabList>
-              );
-            }}
-          </Query>
-        )
-      }
-    </Mutation>
-  </Container>
-);
-export default Sidebar;
+}
+
+Sidebar.propTypes = {
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+};
+
+export default withRouter(Sidebar);

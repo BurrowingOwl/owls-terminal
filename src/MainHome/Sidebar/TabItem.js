@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Item = styled.li`
   padding: 10px;
@@ -14,10 +15,17 @@ const Item = styled.li`
   }
 `;
 
-const TabItem = ({ name, ...props }) => (
-  <Item {...props}>
-    <span>{name}</span>
-  </Item>
+const LinkWrapper = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const TabItem = ({ _id, name, selected, ...props }) => (
+  <LinkWrapper to={`/${_id}`}>
+    <Item {...props}>
+      <span selected={selected}>{name}</span>
+    </Item>
+  </LinkWrapper>
 );
 
 TabItem.propTypes = {

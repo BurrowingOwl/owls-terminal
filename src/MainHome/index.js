@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Post from './Post';
-import PostView from './PostView';
 
 const Side = styled.div`
   flex: 0 1 200px;
@@ -18,8 +17,9 @@ const MainHome = () => (
       <Sidebar />
     </Side>
     <Article>
-      <Route exact path="/" component={Post} />
-      <Route path="/post/:postId" component={PostView} />
+      <Switch>
+        <Route path="/:tabId?/:postId?" component={Post} />
+      </Switch>
     </Article>
   </Fragment>
 );

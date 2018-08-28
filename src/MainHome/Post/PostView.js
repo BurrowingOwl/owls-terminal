@@ -43,31 +43,28 @@ const GET_POST_BY_ID = gql`
     }
   }
 `;
-const PostView = ({ match }) => {
-  const { postId } = match.params;
-  return (
-    <Query query={GET_POST_BY_ID} variables={{ postId }}>
-      {
-        ({ data: { post }, loading }) => {
-          if (loading) return <Loading />;
-          return (
-            <Container>
-              <Header>
-                <Title>{ post.title }</Title>
-              </Header>
-              <Body>
-                <Contents>{ post.contents }</Contents>
-              </Body>
-            </Container>
-          );
-        }
+const PostView = ({ postId }) => (
+  <Query query={GET_POST_BY_ID} variables={{ postId }}>
+    {
+      ({ data: { post }, loading }) => {
+        if (loading) return <Loading />;
+        return (
+          <Container>
+            <Header>
+              <Title>{ post.title }</Title>
+            </Header>
+            <Body>
+              <Contents>{ post.contents }</Contents>
+            </Body>
+          </Container>
+        );
       }
-    </Query>
-  );
-};
+    }
+  </Query>
+);
 
 PostView.propTypes = {
-  match: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
 };
 
 export default PostView;

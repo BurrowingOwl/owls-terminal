@@ -8,15 +8,10 @@ const clientState = {
       name: '',
       isLoggedIn: false,
     },
-    selectedTabId: '',
   },
   resolvers: {
     Query: () => ({}),
     Mutation: {
-      selectTabId: (_, { tabId }, { cache }) => {
-        cache.writeData({ data: { selectedTabId: tabId } });
-        return null;
-      },
       updateLoginData: (_, { _id = '', username = '', name = '', isLoggedIn = false, token }, { cache }) => {
         const userData = { _id, username, name, isLoggedIn, token };
         localStorage.setItem('token', token);
