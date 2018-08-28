@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
   flex: 1 1 auto;
 `;
 const Title = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
 
   font-weight: 500;
