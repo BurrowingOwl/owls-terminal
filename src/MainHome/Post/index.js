@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Loading } from '@/common';
+import { Button, Loading } from '@/common';
 import PostView from './PostView';
 import PostItem from './PostItem';
 
@@ -18,6 +19,7 @@ const GET_POSTS_BY_TAG = gql`
       title
       created
       author {
+        _id
         name
       }
       tab {
@@ -33,9 +35,10 @@ const Post = ({ match }) => {
   }
   return (
     <Query skip={!tabId} query={GET_POSTS_BY_TAG} variables={{ tabId }}>
-      {({ loading, error, data: { posts } }) => {
+      {({ loading, error, data }) => {
         if (loading) return <Loading />;
         if (error) return `Error! ${error.message}`;
+        const { posts } = data;
         if (!posts) return null;
         return (
           <Container>
@@ -49,6 +52,9 @@ const Post = ({ match }) => {
                 />
               ))
             }
+            <Link to="/edit">
+              <Button>Create Post</Button>
+            </Link>
           </Container>
         );
       }}

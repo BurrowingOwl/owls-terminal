@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 const Section = styled.div`
   width: 100%;
-  
+  height: calc(100% - 60px);
   display: flex;
 `;
 

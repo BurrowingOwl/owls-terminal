@@ -102,6 +102,18 @@ module.exports = (option) => ({
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: [
           {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(jpe?g|png|gif|ico)$/i,
+        use: [
+          {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',

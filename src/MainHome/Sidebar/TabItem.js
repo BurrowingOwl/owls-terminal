@@ -20,16 +20,18 @@ const LinkWrapper = styled(Link)`
   color: inherit;
 `;
 
-const TabItem = ({ _id, name, selected, ...props }) => (
+const TabItem = ({ _id, name, selected }) => (
   <LinkWrapper to={`/${_id}`}>
-    <Item {...props}>
-      <span selected={selected}>{name}</span>
+    <Item selected={selected}>
+      <span>{name}</span>
     </Item>
   </LinkWrapper>
 );
 
 TabItem.propTypes = {
+  _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 export default TabItem;

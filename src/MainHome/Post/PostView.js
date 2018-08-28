@@ -46,8 +46,11 @@ const GET_POST_BY_ID = gql`
 const PostView = ({ postId }) => (
   <Query query={GET_POST_BY_ID} variables={{ postId }}>
     {
-      ({ data: { post }, loading }) => {
+      ({ data, error, loading }) => {
         if (loading) return <Loading />;
+        if (error) return `Error: ${error}`;
+        const { post } = data;
+        if (!post) return null;
         return (
           <Container>
             <Header>

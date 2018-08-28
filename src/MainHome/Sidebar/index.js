@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import { withRouter, matchPath } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Loading } from '@/common';
@@ -41,12 +41,30 @@ const GET_TABS = gql`
   }
 `;
 class Sidebar extends Component {
+  getRandomInRange = (max, min = 0) => Math.floor(Math.random(max - min + 1) + min);
+  getTabIdFromParams = () => {
+    const { location } = this.props;
+    const matched = matchPath(location.pathname, {
+      path: '/:tabId?/:postId?',
+    });
+    if (!matched || !matched.params) {
+      return null;
+    }
+    return matched.params.tabId;
+  }
+  tabFetched = (tabs) => {
+    const tabId = this.getTabIdFromParams();
+    if (!tabId && tabs.length > 0) {
+      const { history } = this.props;
+      const randomTabId = tabs[this.getRandomInRange(tabs.length)]._id;
+      history.replace(`/${randomTabId}`);
+    }
+  }
   render() {
-    const { match } = this.props;
-    const { tabId } = match.params;
+    const tabId = this.getTabIdFromParams();
     return (
       <Container>
-        <Query query={GET_TABS}>
+        <Query query={GET_TABS} onCompleted={data => this.tabFetched(data.tabs)}>
           {({ loading, error, data }) => {
             if (loading) return <Loading />;
             if (error) return <div>{`Error! ${error.message}`}</div>;
@@ -74,7 +92,7 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default withRouter(Sidebar);
