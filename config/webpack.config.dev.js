@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const base = require('./webpack.base');
@@ -9,7 +8,6 @@ module.exports = base({
   devServer: {
     contentBase: path.resolve(process.cwd(), 'dist'),
     historyApiFallback: true,
-    hot: true,
     inline: true,
 
     host: 'localhost', // Defaults to `localhost`
@@ -30,9 +28,12 @@ module.exports = base({
   },
   entry: [
     // 'webpack-hot-middleware/client?reload=true', // 이거는 webpack-dev-middleware 용.
+    // 'webpack/hot/dev-server', // 이거랑 밑에거는 --hot옵션을 줬기 때문에 자동으로 넣어줌.
+    // 'webpack-dev-server/client?http://localhost:8080/',
     path.resolve(process.cwd(), 'src/index.js'),
   ],
   output: {
+    publicPath: '/',
     filename: 'bundle.js',
   },
   optimization: {
@@ -47,6 +48,7 @@ module.exports = base({
       },
       inject: true, // custom
     }),
-    new webpack.HotModuleReplacementPlugin(), // webpack-hot-loader를 위한 plugin
+    // new webpack.HotModuleReplacementPlugin(), // webpack-hot-loader를 위한 plugin
+    // 이것도--hot옵션을 줬기 때문에 자동으로 넣어줌.
   ],
 });

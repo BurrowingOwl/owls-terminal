@@ -1,17 +1,20 @@
 Arguments: 
-  /usr/local/bin/node /mnt/c/Program Files (x86)/Yarn/bin/yarn.js add data-fns
+  /usr/bin/node /usr/bin/yarn add --dev react-hot-loader
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/ProgramData/Oracle/Java/javapath_target_2292208562:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/GtkSharp/2.12/bin:/mnt/c/MinGW/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Python27:/mnt/c/Program Files (x86)/Yarn/bin:/mnt/c/Program Files/nodejs:/mnt/c/Program Files (x86)/Skype/Phone:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Local/atom/bin:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Roaming/npm:/mnt/c/Users/LTH_DT/AppData/Local/hyper/app-2.1.0-canary2/resources/bin:/mnt/c/Users/LTH_DT/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs:/mnt/c/Program Files/MongoDB/Server/4.0/bin:/mnt/c/Users/T1/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/T1/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/T1/AppData/Roaming/npm:/mnt/c/Users/T1/AppData/Local/hyper/app-2.0.0/resources/bin:/mnt/c/Program Files/Bandizip:/mnt/c/Program Files/MongoDB/Server/4.0/bin
 
 Yarn version: 
-  0.24.6
+  1.9.4
 
 Node version: 
-  10.8.0
+  8.11.4
 
 Platform: 
   linux x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, lstat '/home/lth/.cache/yarn/v2/npm-hpack.js-2.1.6-87774c0949e513f42e84575b3c45681fade2a0b2/lib/hpack/decoder.js'
 
 npm manifest: 
   {
@@ -23,7 +26,11 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "start": "webpack --config ./config/webpack.config.dev.js",
-      "start:dev": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.dev.js & NODE_ENV=development nodemon server"
+      "start:dev": "NODE_ENV=development webpack-dev-server --config ./config/webpack.config.dev.js --hot & NODE_ENV=development nodemon server"
+    },
+    "nodemonConfig": {
+      "watch": "./server",
+      "delay": "1000"
     },
     "dependencies": {
       "apollo-cache-inmemory": "^1.2.8",
@@ -35,6 +42,7 @@ npm manifest:
       "chalk": "^2.4.1",
       "cors": "^2.8.4",
       "dataloader": "^1.4.0",
+      "date-fns": "^1.29.0",
       "express": "^4.16.3",
       "express-graphql": "^0.6.12",
       "graphql": "^0.13.2",
@@ -2283,6 +2291,10 @@ Lockfile:
   dataloader@^1.4.0:
     version "1.4.0"
     resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.4.0.tgz#bca11d867f5d3f1b9ed9f737bd15970c65dff5c8"
+  
+  date-fns@^1.29.0:
+    version "1.29.0"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
   
   date-now@^0.1.4:
     version "0.1.4"
@@ -7939,16 +7951,3 @@ Lockfile:
   zen-observable@^0.8.0:
     version "0.8.9"
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
-
-Trace: 
-  Error: https://registry.yarnpkg.com/data-fns: Not found
-      at Request.params.callback [as _callback] (/mnt/c/Program Files (x86)/Yarn/lib/yarn-cli.js:56255:18)
-      at Request.self.callback (/mnt/c/Program Files (x86)/Yarn/lib/yarn-cli.js:107854:22)
-      at Request.emit (events.js:182:13)
-      at Request.<anonymous> (/mnt/c/Program Files (x86)/Yarn/lib/yarn-cli.js:108837:10)
-      at Request.emit (events.js:182:13)
-      at IncomingMessage.<anonymous> (/mnt/c/Program Files (x86)/Yarn/lib/yarn-cli.js:108757:12)
-      at Object.onceWrapper (events.js:273:13)
-      at IncomingMessage.emit (events.js:187:15)
-      at endReadableNT (_stream_readable.js:1081:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)

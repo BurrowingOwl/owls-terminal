@@ -7,9 +7,17 @@ import { Loading } from '@/common';
 
 const Container = styled.div`
 `; // responsible 추가해야함.
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 const Title = styled.h1`
   text-align: center;
-  font-size: 56px;
+  font-size: 48px;
+
+  margin-top: 5rem;
 `;
 const Body = styled.div`
   max-width: 1000px; 
@@ -44,7 +52,9 @@ const PostView = ({ match }) => {
           if (loading) return <Loading />;
           return (
             <Container>
-              <Title>{ post.title }</Title>
+              <Header>
+                <Title>{ post.title }</Title>
+              </Header>
               <Body>
                 <Contents>{ post.contents }</Contents>
               </Body>

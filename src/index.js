@@ -9,16 +9,20 @@ import theme from '@/style/theme';
 import '@/style/global-style';
 
 const Root = () => (
-  <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <Router>
+  <Router>
+    <ApolloProvider client={client}>
+      <ThemeProvider theme={theme}>
         <App />
-      </Router>
-    </ThemeProvider>
-  </ApolloProvider>
+      </ThemeProvider>
+    </ApolloProvider>
+  </Router>
 );
 
 ReactDOM.render(
   <Root />,
   document.getElementById('root'),
 );
+
+if (module.hot) {
+  module.hot.accept();
+}

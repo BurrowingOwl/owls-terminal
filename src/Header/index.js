@@ -39,7 +39,7 @@ const GET_LOGIN_STATE = gql`
     }
   }
 `;
-const logout = async (client, history) => {
+const logout = (client, history) => {
   // resetStore 에러...
   localStorage.removeItem('token');
   client.writeData({ data: { login: { _id: '', __typename: 'LoginState', isLoggedIn: false } } });

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Route } from 'react-router-dom';
+import { hot } from 'react-hot-loader';
 import Landing from '@/Landing';
 import Main from '@/Main';
 import { graphql, compose, Query } from 'react-apollo';
@@ -88,6 +89,7 @@ class App extends React.Component {
 }
 
 export default compose(
+  hot(module),
   graphql(VERIFY_USER, {
     props: ({ mutate }) => ({
       verifyUser: () => mutate({}),
