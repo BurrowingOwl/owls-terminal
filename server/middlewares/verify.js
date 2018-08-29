@@ -21,6 +21,7 @@ function verify(req, res, next) {
         .then((user) => {
           if (!user) {
             req.user = null;
+            return authFail();
           }
           req.user = user;
           req.token = token;

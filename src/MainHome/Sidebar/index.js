@@ -41,7 +41,7 @@ const GET_TABS = gql`
   }
 `;
 class Sidebar extends Component {
-  getRandomInRange = (max, min = 0) => Math.floor(Math.random(max - min + 1) + min);
+  getRandomInRange = (max, min = 0) => Math.floor(Math.random(max - min) + min);
   getTabIdFromParams = () => {
     const { location } = this.props;
     const matched = matchPath(location.pathname, {
@@ -56,7 +56,7 @@ class Sidebar extends Component {
     const tabId = this.getTabIdFromParams();
     if (!tabId && tabs.length > 0) {
       const { history } = this.props;
-      const randomTabId = tabs[this.getRandomInRange(tabs.length)]._id;
+      const randomTabId = tabs[this.getRandomInRange(tabs.length - 1)]._id;
       history.replace(`/${randomTabId}`);
     }
   }

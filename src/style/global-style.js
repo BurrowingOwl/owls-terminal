@@ -19,4 +19,9 @@ injectGlobal`
   h1, h2, h3 {
     font-family: 'Righteous', cursive;
   }
+
+  pre {
+    background-color: #2D2D2D;
+    padding: 5px 10px;
+  }
 `;

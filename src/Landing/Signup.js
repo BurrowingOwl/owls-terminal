@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Container, Field, Form } from '@/common';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import { Button, Container, Field, Form } from '@/common';
 
 const SIGNUP = gql`
   mutation signup($username: String!, $password: String!, $name: String!) {
@@ -17,6 +18,9 @@ class Signup extends Component {
     password: '',
     name: '',
   }
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  }
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -25,7 +29,9 @@ class Signup extends Component {
   }
   handleSignup = (signup) => () => {
     const { username, password, name } = this.state;
-    signup({ variables: { username, password, name } });
+    const { history } = this.props;
+    signup({ variables: { username, password, name } })
+      .then(() => history.push('/'));
   }
   render() {
     const { username, password, name } = this.state;
