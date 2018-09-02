@@ -111,17 +111,6 @@ module.exports = (option) => ({
         ],
       },
       {
-        test: /\.(jpe?g|png|gif|ico)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
         test: /(\.css|\.scss|\.sass)$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -129,10 +118,8 @@ module.exports = (option) => ({
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              minimize: true,
               sourceMap: true,
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]',
+              minimize: true,
             },
           }, {
             loader: 'postcss-loader',

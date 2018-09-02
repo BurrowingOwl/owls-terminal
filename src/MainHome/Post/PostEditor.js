@@ -1,40 +1,41 @@
 import React, { Component } from 'react';
-import marked from 'marked';
+import styled from 'styled-components';
+import Editor from 'tui-editor';
 import Prism from 'prismjs';
 
-const option = {
-  highlight: (code, language, callback) => {
-    // Check whether the given language is valid for prism
-    const validLang = !!(language && Prism.languages[language]);
-    // Highlight only if the language is valid.
-    const highlighted = validLang
-      ? Prism.highlight(code, Prism.languages[language])
-      : Prism.highlight(code, Prism.languages.javascript);
-    return highlighted;
-  },
-};
+/* eslint-disable */
+import 'tui-editor/dist/tui-editor.min.css';
+import 'tui-editor/dist/tui-editor-contents.min.css';
+import 'codemirror/lib/codemirror.css';
+import 'highlight.js/styles/github.css';
+import 'tui-editor/dist/tui-editor-extScrollSync.js';
 
-// Set the renderer to marked.
-marked.setOptions(option);
+const Container = styled.div`
+  height: 100%;
+`;
 
 class PostEditor extends Component {
   state = {
     text: '',
   }
-  handleChange = (e) => this.setState({ text: e.target.value });
-  parseMd = (text) => marked(text);
+  componentDidMount() {
+    this._editor = new Editor({
+      el: this._editorRef,
+      previewStyle: 'vertical',
+      height: '100%',
+      exts: ['scrollSync'],
+    });
+    // this_editor.getValue()
+  }
+  _editorRef = null;
+  _editor = null;
   render() {
-    const { text } = this.state;
-    const md = this.parseMd(text);
     return (
-      <div>
-        <textarea
-          onChange={this.handleChange}
-          value={text}
+      <Container>
+        <div
+          ref={ref => (this._editorRef = ref)}
         />
-        <h2>Preview</h2>
-        <div dangerouslySetInnerHTML={{ __html: md }} />
-      </div>
+      </Container>
     );
   }
 }
