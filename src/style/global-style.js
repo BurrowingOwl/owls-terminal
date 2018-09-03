@@ -16,8 +16,8 @@ injectGlobal`
     height: 100%;
   }
 
-  h1, h2, h3 {
-    font-family: 'Righteous', cursive;
+  h1, h2, h3, input {
+    font-family: 'Righteous', 'Gothic A1', cursive;
   }
 
   pre {
