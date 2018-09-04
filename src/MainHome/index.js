@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Post from './Post';
-import PostEditor from './Post/PostEditor';
 
 const Side = styled.div`
   flex: 0 1 200px;
@@ -20,8 +19,7 @@ const MainHome = () => (
     </Side>
     <Article>
       <Switch>
-        <Route path="/edit" component={PostEditor} />
-        <Route path="/:tabId?/:postId?" component={Post} />
+        <Route path="/:tabId" component={Post} />
       </Switch>
     </Article>
   </Fragment>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Viewer from 'tui-editor/dist/tui-editor-Viewer';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Loading } from '@/common';
@@ -24,7 +25,7 @@ const Body = styled.div`
   margin: 0 auto;
   margin-top: 1rem;
 `;
-const Contents = styled.p`
+const Contents = styled.div`
   font-size: 22px;
   padding: 1rem;
   word-break: break-word;
@@ -43,31 +44,56 @@ const GET_POST_BY_ID = gql`
     }
   }
 `;
-const PostView = ({ postId }) => (
-  <Query query={GET_POST_BY_ID} variables={{ postId }}>
-    {
-      ({ data, error, loading }) => {
-        if (loading) return <Loading />;
-        if (error) return `Error: ${error}`;
-        const { post } = data;
-        if (!post) return null;
-        return (
-          <Container>
-            <Header>
-              <Title>{ post.title }</Title>
-            </Header>
-            <Body>
-              <Contents>{ post.contents }</Contents>
-            </Body>
-          </Container>
-        );
+class PostView extends Component {
+  _viewer = null;
+  _viewerRef = null;
+  setViewer = ({ post }) => {
+    window.requestAnimationFrame(() => {
+      if (this._viewerRef) {
+        this._viewer = new Viewer({
+          el: this._viewerRef,
+          initialValue: post.contents,
+        });
       }
-    }
-  </Query>
-);
+    });
+  }
+  render() {
+    const { match } = this.props;
+    const { postId } = match.params;
+    if (!postId) return null;
+    return (
+      // 이건 cache를 안쓰는게 더 좋다고 판단해서 fetchPolicy 따로 지정함
+      <Query
+        query={GET_POST_BY_ID}
+        variables={{ postId }}
+        fetchPolicy="network-only"
+        onCompleted={data => this.setViewer(data)}
+      >
+        {
+          ({ data, error, loading }) => {
+            if (loading) return <Loading />;
+            if (error) return `Error: ${error}`;
+            const { post } = data;
+            if (!post) return null;
+            return (
+              <Container>
+                <Header>
+                  <Title>{ post.title }</Title>
+                </Header>
+                <Body>
+                  <Contents innerRef={ref => (this._viewerRef = ref)} />
+                </Body>
+              </Container>
+            );
+          }
+        }
+      </Query>
+    );
+  }
+}
 
 PostView.propTypes = {
-  postId: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 export default PostView;

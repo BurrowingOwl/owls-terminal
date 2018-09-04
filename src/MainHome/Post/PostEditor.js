@@ -32,12 +32,20 @@ const EditorDiv = styled.div`
     ${props => !props.showToolbar && `display: none !important;`}
   }
 `;
+// TODO: Post get Query에 따라 가지고 오는 필드 fragment 만들어서 재사용하기.
 const CREATE_POST = gql`
   mutation CreatePost($title: String!, $contents: String!, $authorId: String!, $tabId: String) {
     createPost(title: $title, contents: $contents, authorId: $authorId, tabId: $tabId) {
       _id
       title
-      contents
+      created
+      author {
+        _id
+        name
+      }
+      tab {
+        _id
+      }
     }
   }
 `;
@@ -75,15 +83,18 @@ class PostEditor extends Component {
       this._editor.focus();
     }
   }
-  handleCreatePost = (loginState, createPost) => e => {
+  handleCreatePost = (tabId, loginState, createPost) => e => {
     const title = this._title.value;
     const contents = this._editor.getValue();
     const authorId = loginState._id;
-    createPost({ variables: { title, contents, authorId }})
+    createPost({ variables: { title, contents, authorId, tabId }})
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
   render() {
+    const { match } = this.props;
+    const { tabId } = match.params;
+    console.log(tabId);
     return (
       <Container>
         <Query query={GET_LOGIN_STATE}>
@@ -109,7 +120,7 @@ class PostEditor extends Component {
                           innerRef={ref => (this._editorRef = ref)}
                           showToolbar={false} // need this?
                         />
-                        <Button primary onClick={this.handleCreatePost(login, createPost)}>
+                        <Button primary onClick={this.handleCreatePost(tabId, login, createPost)}>
                           Publish Post
                         </Button>
                       </React.Fragment>
