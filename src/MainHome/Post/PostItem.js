@@ -28,7 +28,7 @@ const Title = styled.div`
 
   font-weight: 500;
   cursor: pointer;
-  &:hover {
+  ${Container}:hover & {
     color: ${props => props.theme.primary};
     transition: color 0.2s;
   }

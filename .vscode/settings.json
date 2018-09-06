@@ -1,5 +1,5 @@
 {
     "editor.tabSize": 2,
     "files.eol": "\n",
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
 }
