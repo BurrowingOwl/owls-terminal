@@ -4,15 +4,21 @@ function getPost(_, { _id }) {
   return postQuery.getPostById(_id);
 }
 
-function getPosts(_, { tabId, authorId }) {
+function getPosts(_, { tabId, authorId, projection = {}, limit = 0, sort = { _id: -1 } }) {
   let query = {};
+  let option = {};
   if (authorId) {
     query = { ...query, authorId };
   }
   if (tabId) {
     query = { ...query, tabId };
   }
-  return postQuery.getPostsByQuery(query);
+  option = {
+    projection,
+    limit,
+    sort,
+  };
+  return postQuery.getPostsByQuery(query, option);
 }
 
 function createPost(_, post) {

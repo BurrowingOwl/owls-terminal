@@ -12,8 +12,11 @@ async function getPostsByIds(ids) {
 function getPostsByAuthor(id) {
   return Post.find({ authorId: id });
 }
-function getPostsByQuery(query = {}) {
-  return Post.find(query);
+function getPostsByQuery(query = {}, option = {}) {
+  const { projection, limit, sort } = option;
+  return Post.find(query, projection)
+    .limit(limit)
+    .sort(sort);
 }
 
 function savePost(post = {}) {
