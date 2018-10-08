@@ -7,8 +7,10 @@ injectGlobal`
     height: 100%;
     padding: 0;
     margin: 0;
-
     font-family: 'Ubuntu', 'Nanum Gothic', sans-serif;
+  }
+  body {
+    overflow-y: scroll;
   }
 
   #root {

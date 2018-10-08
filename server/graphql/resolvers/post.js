@@ -4,9 +4,16 @@ function getPost(_, { _id }) {
   return postQuery.getPostById(_id);
 }
 
-function getPosts(_, { tabId, authorId, projection = {}, limit = 0, sort = { _id: -1 } }) {
+async function getPosts(_, { filter }) {
+  const { authorId, tabId, cursor } = filter;
+  const limit = 12; // 일단 상수로.
   let query = {};
   let option = {};
+  let newCursor;
+  let isLast = true;
+  if (cursor) {
+    query = { ...query, created: { $lt: cursor } };
+  }
   if (authorId) {
     query = { ...query, authorId };
   }
@@ -14,11 +21,19 @@ function getPosts(_, { tabId, authorId, projection = {}, limit = 0, sort = { _id
     query = { ...query, tabId };
   }
   option = {
-    projection,
     limit,
-    sort,
+    sort: { created: -1 },
   };
-  return postQuery.getPostsByQuery(query, option);
+  const posts = await postQuery.getPostsByQuery(query, option);
+  if (posts.length > 0) {
+    newCursor = posts[posts.length - 1].created;
+    isLast = false;
+  }
+  return {
+    posts,
+    isLast,
+    cursor: newCursor,
+  };
 }
 
 function createPost(_, post) {

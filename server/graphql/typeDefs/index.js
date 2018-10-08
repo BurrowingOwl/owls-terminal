@@ -11,7 +11,7 @@ type Query {
   user(_id: String!): User
   users(isAuthorized: Boolean): [User]
   post(_id: String!): Post
-  posts(tabId: String, authorId: String): [Post]
+  posts(filter: PostListFilter): PostListWithCursor
   tab(_id: String!): Tab
   tabs(name: String): [Tab]
 },
@@ -33,6 +33,19 @@ type Post {
   updated: String
   status: String
   tab: Tab
+}
+type PostListWithCursor {
+  cursor: String
+  isLast: Boolean
+  posts: [Post]
+}
+input PostListFilter {
+  authorId: String
+  tabId: String
+  keyword: String
+  keywordFrom: String
+  filter: String
+  cursor: String
 }
 type Tab {
   _id: String

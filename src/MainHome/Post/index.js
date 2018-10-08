@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Route, Switch, Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Button, Loading } from '@/common';
+import { Button, Loading, ScrollSpy } from '@/common';
 import PostView from './PostView';
 import PostItem from './PostItem';
 import PostEditor from './PostEditor';
@@ -14,17 +14,21 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const GET_POSTS_BY_TAG = gql`
-  query getPosts($tabId: String!) {
-    posts(tabId: $tabId) {
-      _id
-      title
-      created
-      author {
+  query getPosts($filter: PostListFilter) {
+    posts(filter: $filter) {
+      cursor
+      isLast
+      posts {
         _id
-        name
-      }
-      tab {
-        _id
+        title
+        created
+        author {
+          _id
+          name
+        }
+        tab {
+          _id
+        }
       }
     }
   }
@@ -37,14 +41,16 @@ const Post = ({ match }) => {
         exact
         path={`${match.url}`}
         render={() => (
-          <Query skip={!tabId} query={GET_POSTS_BY_TAG} variables={{ tabId }}>
-            {({ loading, error, data }) => {
-              if (loading) return <Loading />;
-              if (error) return `Error! ${error.message}`;
-              const { posts } = data;
-              if (!posts) return null;
+          <Query skip={!tabId} query={GET_POSTS_BY_TAG} variables={{ filter: { tabId } }} fetchPolicy="cache-and-network">
+            {({ data, fetchMore, loading }) => {
+              if (!data.posts) return null;
+              const { cursor, isLast, posts } = data.posts;
+              if (posts.length < 0) return null;
               return (
                 <Container>
+                  <Link to={`/${tabId}/edit`}>
+                    <Button>Create Post</Button>
+                  </Link>
                   {
                     posts.map(post => (
                       <PostItem
@@ -55,9 +61,35 @@ const Post = ({ match }) => {
                       />
                     ))
                   }
-                  <Link to={`/${tabId}/edit`}>
-                    <Button>Create Post</Button>
-                  </Link>
+                  { !isLast && (
+                    <ScrollSpy
+                      onHit={() => {
+                        fetchMore({
+                          variables: {
+                            filter: {
+                              tabId,
+                              cursor,
+                            },
+                          },
+                          updateQuery: (prev, { fetchMoreResult }) => {
+                            if (fetchMoreResult.posts.isLast) return { ...prev, posts: { ...prev.posts, isLast: true } };
+
+                            const result = {
+                              ...prev,
+                              posts: {
+                                ...prev.posts,
+                                cursor: fetchMoreResult.posts.cursor,
+                                isLast: fetchMoreResult.posts.isLast,
+                                posts: [...prev.posts.posts, ...fetchMoreResult.posts.posts],
+                              },
+                            };
+                            return result;
+                          },
+                        });
+                      }}
+                    />
+                  )}
+                  { loading && <Loading /> }
                 </Container>
               );
             }}

@@ -15,7 +15,8 @@ const Container = styled.div`
   flex-basis: 200px;
   flex-shrink: 0;
   min-width: 1px;
-  min-height: 100%;
+  min-height: 100vh;
+  height: 100%;
   max-width: 260px;
   z-index: 201;
   box-sizing: content-box;

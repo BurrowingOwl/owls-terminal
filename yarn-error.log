@@ -1,20 +1,17 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn add --dev react-hot-loader
+  /usr/local/bin/node /mnt/c/Program Files (x86)/Yarn/bin/yarn.js add lodash
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs:/mnt/c/Program Files/MongoDB/Server/4.0/bin:/mnt/c/Users/T1/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/T1/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/T1/AppData/Roaming/npm:/mnt/c/Users/T1/AppData/Local/hyper/app-2.0.0/resources/bin:/mnt/c/Program Files/Bandizip:/mnt/c/Program Files/MongoDB/Server/4.0/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath_target_878234:/mnt/c/ProgramData/Oracle/Java/javapath_target_912109:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/GtkSharp/2.12/bin:/mnt/c/MinGW/bin:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0:/mnt/c/Python27:/mnt/c/Program Files (x86)/Yarn/bin:/mnt/c/Program Files/nodejs:/mnt/c/Program Files (x86)/Skype/Phone:/mnt/c/Windows/System32/OpenSSH:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/LTH_DT/AppData/Roaming/npm:/mnt/c/Users/LTH_DT/AppData/Local/hyper/app-2.1.0-canary2/resources/bin:/mnt/c/Users/LTH_DT/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
 
 Yarn version: 
-  1.9.4
+  0.24.6
 
 Node version: 
-  8.11.4
+  10.8.0
 
 Platform: 
   linux x64
-
-Trace: 
-  Error: ENOENT: no such file or directory, lstat '/home/lth/.cache/yarn/v2/npm-hpack.js-2.1.6-87774c0949e513f42e84575b3c45681fade2a0b2/lib/hpack/decoder.js'
 
 npm manifest: 
   {
@@ -52,16 +49,18 @@ npm manifest:
       "lodash": "^4.17.10",
       "mongoose": "^5.2.9",
       "office-ui-fabric-react": "^6.55.0",
+      "prismjs": "^1.15.0",
       "prop-types": "^15.6.2",
       "react": "^16.4.2",
       "react-apollo": "^2.1.11",
       "react-dom": "^16.4.2",
-      "react-hot-loader": "^4.3.4",
+      "react-hot-loader": "^4.3.5",
       "react-icons": "^3.0.5",
       "react-router-dom": "^4.3.1",
       "redux": "^4.0.0",
       "redux-saga": "^0.16.0",
-      "styled-components": "^3.4.2"
+      "styled-components": "^3.4.2",
+      "tui-editor": "^1.2.6"
     },
     "devDependencies": {
       "autoprefixer": "^9.1.1",
@@ -1920,6 +1919,14 @@ Lockfile:
     version "2.2.0"
     resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   
+  clipboard@^2.0.0:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.1.tgz#a12481e1c13d8a50f5f036b0560fe5d16d74e46a"
+    dependencies:
+      good-listener "^1.2.2"
+      select "^1.1.2"
+      tiny-emitter "^2.0.0"
+  
   cliui@^2.1.0:
     version "2.1.0"
     resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -1943,6 +1950,10 @@ Lockfile:
   code-point-at@^1.0.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
+  
+  codemirror@^5.33.0:
+    version "5.40.0"
+    resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.40.0.tgz#2f5ed47366e514f41349ba0fe34daaa39be4e257"
   
   collection-visit@^1.0.0:
     version "1.0.0"
@@ -2395,6 +2406,10 @@ Lockfile:
   delayed-stream@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
+  
+  delegate@^3.1.2:
+    version "3.2.0"
+    resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
   
   delegates@^1.0.0:
     version "1.0.0"
@@ -2909,6 +2924,10 @@ Lockfile:
   etag@~1.8.1:
     version "1.8.1"
     resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
+  
+  "eve@git://github.com/adobe-webplatform/eve.git#eef80ed":
+    version "0.4.1"
+    resolved "git://github.com/adobe-webplatform/eve.git#eef80ed"
   
   event-stream@~3.3.0:
     version "3.3.4"
@@ -3462,6 +3481,12 @@ Lockfile:
       pify "^2.0.0"
       pinkie-promise "^2.0.0"
   
+  good-listener@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+    dependencies:
+      delegate "^3.1.2"
+  
   got@^6.7.1:
     version "6.7.1"
     resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -3609,6 +3634,10 @@ Lockfile:
   he@1.1.x:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+  
+  highlight.js@^9.12.0:
+    version "9.12.0"
+    resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
   
   history@^4.7.2:
     version "4.7.2"
@@ -4564,6 +4593,10 @@ Lockfile:
       import-local "^1.0.0"
       jest-cli "^23.5.0"
   
+  jquery@^3.3.1:
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  
   js-tokens@^3.0.0, "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
@@ -4761,6 +4794,12 @@ Lockfile:
       prelude-ls "~1.1.2"
       type-check "~0.3.2"
   
+  linkify-it@^2.0.0:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-2.0.3.tgz#d94a4648f9b1c179d64fa97291268bdb6ce9434f"
+    dependencies:
+      uc.micro "^1.0.1"
+  
   load-json-file@^1.0.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -4954,6 +4993,16 @@ Lockfile:
     dependencies:
       object-visit "^1.0.0"
   
+  markdown-it@^8.4.0:
+    version "8.4.2"
+    resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
+    dependencies:
+      argparse "^1.0.7"
+      entities "~1.1.1"
+      linkify-it "^2.0.0"
+      mdurl "^1.0.1"
+      uc.micro "^1.0.5"
+  
   math-random@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
@@ -4964,6 +5013,10 @@ Lockfile:
     dependencies:
       hash-base "^3.0.0"
       inherits "^2.0.1"
+  
+  mdurl@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   
   media-typer@0.3.0:
     version "0.3.0"
@@ -5679,6 +5732,10 @@ Lockfile:
       registry-url "^3.0.3"
       semver "^5.1.0"
   
+  pako@1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.3.tgz#5f515b0c6722e1982920ae8005eacb0b7ca73ccf"
+  
   pako@~1.0.5:
     version "1.0.6"
     resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
@@ -5849,6 +5906,13 @@ Lockfile:
     dependencies:
       find-up "^2.1.0"
   
+  plantuml-encoder@^1.2.5:
+    version "1.2.5"
+    resolved "https://registry.yarnpkg.com/plantuml-encoder/-/plantuml-encoder-1.2.5.tgz#6b8e5b9e1a1dbd88b3fd9fb46f734eec7d44b548"
+    dependencies:
+      pako "1.0.3"
+      utf8-bytes "0.0.1"
+  
   pluralize@^7.0.0:
     version "7.0.0"
     resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
@@ -5957,6 +6021,12 @@ Lockfile:
     dependencies:
       ansi-regex "^3.0.0"
       ansi-styles "^3.2.0"
+  
+  prismjs@^1.15.0:
+    version "1.15.0"
+    resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.15.0.tgz#8801d332e472091ba8def94976c8877ad60398d9"
+    optionalDependencies:
+      clipboard "^2.0.0"
   
   private@^0.1.6, private@^0.1.8:
     version "0.1.8"
@@ -6115,6 +6185,12 @@ Lockfile:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
   
+  "raphael@https://github.com/nhnent/raphael.git#2.2.0-c":
+    version "2.2.0-c"
+    resolved "https://github.com/nhnent/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
+    dependencies:
+      eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
+  
   raw-body@2.3.2:
     version "2.3.2"
     resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.2.tgz#bcd60c77d3eb93cde0050295c3f379389bc88f89"
@@ -6161,9 +6237,9 @@ Lockfile:
       object-assign "^4.1.1"
       prop-types "^15.6.0"
   
-  react-hot-loader@^4.3.4:
-    version "4.3.4"
-    resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.4.tgz#4f9bdd55bb20d77a6ae8931fa1c187e5f0ce6279"
+  react-hot-loader@^4.3.5:
+    version "4.3.5"
+    resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.5.tgz#d8659839d8072d4b78938a776f29f5f1d2a40170"
     dependencies:
       fast-levenshtein "^2.0.6"
       global "^4.3.0"
@@ -6485,6 +6561,10 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   
+  resize-observer-polyfill@^1.5.0:
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz#660ff1d9712a2382baa2cad450a4716209f9ca69"
+  
   resolve-cwd@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
@@ -6638,6 +6718,10 @@ Lockfile:
   select-hose@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
+  
+  select@^1.1.2:
+    version "1.1.2"
+    resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   
   selfsigned@^1.9.1:
     version "1.10.3"
@@ -6934,6 +7018,10 @@ Lockfile:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   
+  "squire-rte@github:neilj/Squire#306230d0df9b38047cd06204476ddc0582569cfd":
+    version "1.8.10"
+    resolved "https://codeload.github.com/neilj/Squire/tar.gz/306230d0df9b38047cd06204476ddc0582569cfd"
+  
   sshpk@^1.7.0:
     version "1.14.2"
     resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.14.2.tgz#c6fc61648a3d9c4e764fd3fcdf4ea105e492ba98"
@@ -7217,6 +7305,10 @@ Lockfile:
     dependencies:
       setimmediate "^1.0.4"
   
+  tiny-emitter@^2.0.0:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
+  
   tmp@^0.0.33:
     version "0.0.33"
     resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -7238,6 +7330,10 @@ Lockfile:
   to-fast-properties@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
+  
+  to-mark@^1.1.2:
+    version "1.1.3"
+    resolved "https://registry.yarnpkg.com/to-mark/-/to-mark-1.1.3.tgz#d421a170a2dd582025e5090256c7821c6703f346"
   
   to-object-path@^0.3.0:
     version "0.3.0"
@@ -7304,6 +7400,40 @@ Lockfile:
     version "0.0.0"
     resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   
+  tui-chart@^3.0.1:
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/tui-chart/-/tui-chart-3.3.1.tgz#34f11787d6c1b2a61b98febf9804c5d1fc3cc432"
+    dependencies:
+      babel-polyfill "^6.26.0"
+      raphael "https://github.com/nhnent/raphael.git#2.2.0-c"
+      tui-code-snippet "^1.3.0"
+  
+  tui-code-snippet@^1.3.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/tui-code-snippet/-/tui-code-snippet-1.4.0.tgz#b09bb8e621e382af23024363d5763f9be44412b4"
+  
+  tui-color-picker@^2.2.0:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/tui-color-picker/-/tui-color-picker-2.2.0.tgz#452b89a25f3f3d9f47dae73c166435dd3539bc4f"
+    dependencies:
+      tui-code-snippet "^1.3.0"
+  
+  tui-editor@^1.2.6:
+    version "1.2.6"
+    resolved "https://registry.yarnpkg.com/tui-editor/-/tui-editor-1.2.6.tgz#3a7fb374b5e7907ed6d0a1eddd43e5da197c4576"
+    dependencies:
+      codemirror "^5.33.0"
+      highlight.js "^9.12.0"
+      jquery "^3.3.1"
+      markdown-it "^8.4.0"
+      plantuml-encoder "^1.2.5"
+      resize-observer-polyfill "^1.5.0"
+      squire-rte "github:neilj/Squire#306230d0df9b38047cd06204476ddc0582569cfd"
+      to-mark "^1.1.2"
+      tui-chart "^3.0.1"
+      tui-code-snippet "^1.3.0"
+      tui-color-picker "^2.2.0"
+  
   tunnel-agent@^0.6.0:
     version "0.6.0"
     resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
@@ -7334,6 +7464,10 @@ Lockfile:
   ua-parser-js@^0.7.18:
     version "0.7.18"
     resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
+  
+  uc.micro@^1.0.1, uc.micro@^1.0.5:
+    version "1.0.5"
+    resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.5.tgz#0c65f15f815aa08b560a61ce8b4db7ffc3f45376"
   
   uglify-es@^3.3.4:
     version "3.3.9"
@@ -7495,6 +7629,10 @@ Lockfile:
   user-home@^1.1.1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/user-home/-/user-home-1.1.1.tgz#2b5be23a32b63a7c9deb8d0f28d485724a3df190"
+  
+  utf8-bytes@0.0.1:
+    version "0.0.1"
+    resolved "https://registry.yarnpkg.com/utf8-bytes/-/utf8-bytes-0.0.1.tgz#116b025448c9b500081cdfbf1f4d6c6c37d8837d"
   
   util-deprecate@~1.0.1:
     version "1.0.2"
@@ -7951,3 +8089,6 @@ Lockfile:
   zen-observable@^0.8.0:
     version "0.8.9"
     resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
+
+Trace: 
+  Error: ENOENT: no such file or directory, lstat '/home/LTH/.cache/yarn/v1/npm-tui-chart-3.3.1-34f11787d6c1b2a61b98febf9804c5d1fc3cc432/src/js/charts/boxplotChart.js'
